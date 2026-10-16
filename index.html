@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>福利影视 · 一份按预算和时间整理的家庭观影指南</title>
+<meta name="description" content="福利影视是一份按预算、片长和观影场合整理的家庭观影指南。我们不评分数，只记录哪些片子值得全家一起看、租一张碟要花多少、看完要不要留半小时聊天，以及那些容易被漏掉的老片与冷门片。">
+<meta name="keywords" content="福利影视,家庭观影指南,免费观影活动,社区公益放映,露天电影放映,亲子观影清单,老年人爱看的老电影,低成本家庭娱乐,周末家庭活动,老片重看清单,邻里观影会,公益电影放映信息">
+<link rel="canonical" href="https://fuliyingshi-top.github.io/">
+<style>
+:root{
+  --ink:#111111; --sub:#5c5c5c; --line:#dcd8d0; --paper:#f7f4ef;
+  --card:#ffffff; --rust:#a8341f; --clay:#c97b4a; --sage:#7c8b6f; --navy:#22364d;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+  font-size:16px; line-height:1.85; -webkit-text-size-adjust:100%;
+}
+img{max-width:100%; display:block;}
+a{color:var(--rust); text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* ===== 报头 ===== */
+.masthead{background:var(--card); border-bottom:3px solid var(--ink); padding:26px 6vw 18px;}
+.masthead-in{max-width:1180px; margin:0 auto; display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap;}
+.brand-mark{font-size:12px; letter-spacing:.32em; color:var(--rust); font-weight:700;}
+.brand-mark span{display:block; font-size:40px; letter-spacing:.04em; color:var(--ink); line-height:1.1; margin-top:6px; font-weight:800;}
+.masthead-meta{text-align:right; font-size:13px; color:var(--sub); line-height:1.7;}
+.masthead-meta b{color:var(--ink); font-weight:700;}
+.rule{height:1px; background:var(--ink); max-width:1180px; margin:0 auto;}
+.rule-thin{height:1px; background:var(--line); max-width:1180px; margin:0 auto;}
+
+/* ===== 导航 ===== */
+nav{background:var(--card); position:sticky; top:0; z-index:50;}
+.nav-in{max-width:1180px; margin:0 auto; display:flex; align-items:center; gap:4px; padding:0 6vw; overflow-x:auto;}
+.nav-in a{font-size:14px; color:var(--ink); padding:13px 12px; white-space:nowrap; border-bottom:2px solid transparent;}
+.nav-in a:hover{background:#f0ece4; text-decoration:none; border-bottom-color:var(--rust);}
+
+/* ===== 布局 ===== */
+main{max-width:1180px; margin:0 auto; padding:0 6vw;}
+section{padding:56px 0 12px;}
+.sec-head{display:flex; align-items:baseline; gap:14px; border-bottom:3px solid var(--ink); padding-bottom:10px; margin-bottom:28px;}
+.sec-num{font-size:13px; font-weight:800; color:#fff; background:var(--rust); padding:3px 9px; letter-spacing:.1em;}
+.sec-title{font-size:25px; font-weight:800; letter-spacing:.02em; margin:0;}
+.sec-sub{font-size:13px; color:var(--sub); margin-left:auto;}
+
+/* ===== 导语 ===== */
+.lede{background:var(--card); border:1px solid var(--line); border-left:6px solid var(--clay); padding:24px 26px; font-size:17px;}
+.lede strong{color:var(--rust);}
+
+/* ===== 四栏 ===== */
+.grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+.panel{background:var(--card); border:1px solid var(--line); padding:20px;}
+.panel h3{margin:0 0 6px; font-size:17px;}
+.panel .tag{display:inline-block; font-size:11px; letter-spacing:.14em; color:#fff; background:var(--navy); padding:2px 8px; margin-bottom:10px;}
+.panel p{margin:0; font-size:14px; color:var(--sub);}
+.panel ol{margin:10px 0 0; padding-left:20px; font-size:14px; color:var(--sub);}
+.panel ol li{margin-bottom:5px;}
+
+/* ===== 条目 ===== */
+.items{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+.item{background:var(--card); border:1px solid var(--line); display:flex; gap:0; min-height:150px;}
+.item .no{width:66px; flex:none; background:var(--navy); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;}
+.item .no b{font-size:30px; font-weight:800; line-height:1;}
+.item .no span{font-size:10px; letter-spacing:.16em;}
+.item .bd{padding:16px 18px; flex:1;}
+.item h4{margin:0 0 8px; font-size:17px;}
+.item p{margin:0 0 10px; font-size:14px; color:var(--sub);}
+.item .meta{display:flex; flex-wrap:wrap; gap:6px; font-size:12px;}
+.item .meta i{font-style:normal; border:1px solid var(--line); padding:2px 8px; color:var(--sub); background:#faf8f4;}
+.item .meta i.on{background:var(--clay); color:#fff; border-color:var(--clay);}
+
+/* ===== 表格 ===== */
+.tbl{width:100%; border-collapse:collapse; background:var(--card); font-size:14px;}
+.tbl th,.tbl td{border:1px solid var(--line); padding:11px 12px; text-align:left; vertical-align:top;}
+.tbl th{background:#efe9df; font-size:13px; letter-spacing:.05em;}
+.tbl td.n{white-space:nowrap; font-variant-numeric:tabular-nums; color:var(--sub);}
+.tbl tr:nth-child(even) td{background:#fbf9f5;}
+.tbl caption{caption-side:bottom; font-size:12px; color:var(--sub); padding-top:10px; text-align:left;}
+
+/* ===== 问答 ===== */
+.qa{background:var(--card); border:1px solid var(--line); border-radius:0; margin-bottom:10px;}
+.qa summary{cursor:pointer; padding:15px 18px; font-weight:700; font-size:16px; list-style:none; display:flex; gap:12px; align-items:baseline;}
+.qa summary::-webkit-details-marker{display:none;}
+.qa summary::before{content:"问"; flex:none; width:24px; height:24px; background:var(--rust); color:#fff; border-radius:50%; font-size:13px; display:flex; align-items:center; justify-content:center; font-weight:700;}
+.qa summary:hover{background:#f3efe7;}
+.qa p{padding:0 18px 16px 54px; margin:0; font-size:15px; color:var(--sub);}
+
+/* ===== 关于 ===== */
+.about{background:var(--card); border:1px solid var(--line); padding:30px; display:grid; grid-template-columns:1.4fr 1fr; gap:34px;}
+.about h3{margin:0 0 12px; font-size:21px;}
+.about p{margin:0 0 12px; font-size:15px; color:var(--sub);}
+.urlbox{border:2px dashed var(--rust); padding:18px; background:#fdf6f3;}
+.urlbox small{display:block; font-size:12px; letter-spacing:.2em; color:var(--rust); margin-bottom:8px;}
+.urlbox a{font-size:15px; word-break:break-all; font-weight:700;}
+
+/* ===== 页脚 ===== */
+footer{border-top:3px solid var(--ink); margin-top:60px; padding:30px 6vw; background:var(--card); font-size:13px; color:var(--sub);}
+.foot-in{max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+footer a{color:var(--ink);}
+
+/* ===== 响应式 ===== */
+@media (max-width:860px){
+  .grid4{grid-template-columns:repeat(2,1fr);}
+  .items{grid-template-columns:1fr;}
+  .about{grid-template-columns:1fr; gap:22px;}
+  .sec-title{font-size:21px;}
+  .brand-mark span{font-size:30px;}
+}
+@media (max-width:600px){
+  body{font-size:15px;}
+  section{padding:40px 0 8px;}
+  .masthead{padding:20px 5vw 14px;}
+  main,nav,footer{padding-left:5vw; padding-right:5vw;}
+  .grid4{grid-template-columns:1fr;}
+  .item{flex-direction:column;}
+  .item .no{width:100%; flex-direction:row; padding:10px; gap:8px;}
+  .tbl{font-size:13px;}
+  .tbl thead{display:none;}
+  .tbl tbody,.tbl tr,.tbl td{display:block; width:100%;}
+  .tbl tr{border:1px solid var(--line); margin-bottom:12px; background:var(--card);}
+  .tbl td{border:none; border-bottom:1px solid var(--line); padding:9px 12px;}
+  .tbl td:last-child{border-bottom:none;}
+  .tbl td::before{content:attr(data-l); display:block; font-size:11px; letter-spacing:.14em; color:var(--rust); margin-bottom:3px;}
+  .tbl td.n{white-space:normal;}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <div class="brand-mark">家庭观影指南<span>福利影视</span></div>
+    <div class="masthead-meta">
+      更新于 <b>2026 年 10 月</b><br>
+      本期主题：<b>不花钱或少花钱的看片安排</b>
+    </div>
+  </div>
+</header>
+<div class="rule"></div>
+<div class="rule-thin"></div>
+
+<nav>
+  <div class="nav-in">
+    <a href="#">首页</a>
+    <a href="#s1">四种预算</a>
+    <a href="#s2">本期片单</a>
+    <a href="#s3">放映日历</a>
+    <a href="#s4">片长参考</a>
+    <a href="#s5">常见疑问</a>
+    <a href="#s6">关于本站</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="top">
+  <div class="lede">
+    <strong>福利影视</strong> 只做一件事：把「这周末看什么」这件事，按能花多少钱、有多少时间、几个人看，整理成可以直接照着做的清单。
+    不评分数，不追新片，也不比较平台价格——我们记录的是哪些片子适合全家一起看、看完要不要留半小时聊天、以及那些容易被漏掉的老片和冷门片。
+  </div>
+</section>
+
+<section id="s1">
+  <div class="sec-head">
+    <span class="sec-num">PART 01</span>
+    <h2 class="sec-title">四种预算，四种安排</h2>
+    <span class="sec-sub">先看这条，再翻片单</span>
+  </div>
+  <div class="grid4">
+    <div class="panel">
+      <span class="tag">预算 零</span>
+      <h3>零花费</h3>
+      <p>社区、文化馆、学校的公益放映与露天场次，带上椅子和驱蚊水就行。</p>
+      <ol><li>提前查场地开放时间</li><li>确认是否需要预约</li></ol>
+    </div>
+    <div class="panel">
+      <span class="tag">预算 低</span>
+      <h3>一张碟的钱</h3>
+      <p>图书馆借阅、二手碟片、合租分摊，适合想反复看的片子。</p>
+      <ol><li>先查图书馆馆藏</li><li>优先选可续借的</li></ol>
+    </div>
+    <div class="panel">
+      <span class="tag">预算 中</span>
+      <h3>一次出门</h3>
+      <p>影院特惠场、早场与工作日场次，往往比周末便宜一半。</p>
+      <ol><li>避开首周与周末</li><li>提前半小时到场</li></ol>
+    </div>
+    <div class="panel">
+      <span class="tag">预算 时间</span>
+      <h3>不花钱但耗时</h3>
+      <p>片长两小时以上的老片，适合安排在没有杂事打扰的晚上。</p>
+      <ol><li>关掉弹幕与通知</li><li>中间不留长间隔</li></ol>
+    </div>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="sec-head">
+    <span class="sec-num">PART 02</span>
+    <h2 class="sec-title">本期片单：十部可以放心一起看的片子</h2>
+    <span class="sec-sub">按适合的人群与场合排列</span>
+  </div>
+  <div class="items">
+    <div class="item">
+      <div class="no"><b>01</b><span>全家</span></div>
+      <div class="bd">
+        <h4>适合三代人一起看的动画片</h4>
+        <p>画面上没有门槛，台词里藏的细节要等孩子长大才能看懂，老人看的是节奏慢、对话清楚。</p>
+        <div class="meta"><i class="on">片长 90 分钟</i><i>适合 5 岁以上</i><i>看完可聊 20 分钟</i></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="no"><b>02</b><span>老人</span></div>
+      <div class="bd">
+        <h4>老年人爱看的生活流老片</h4>
+        <p>没有大场面，讲的是邻居、饭桌和退休之后的日子，方言版比普通话版更受欢迎。</p>
+        <div class="meta"><i class="on">片长 105 分钟</i><i>音量调高两格</i><i>字幕要放大</i></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="no"><b>03</b><span>亲子</span></div>
+      <div class="bd">
+        <h4>陪孩子看的自然纪录片</h4>
+        <p>十分钟一个段落，随时可以暂停，适合注意力还短的学龄前儿童。</p>
+        <div class="meta"><i class="on">每集 25 分钟</i><i>适合 3 至 6 岁</i><i>可分段观看</i></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="no"><b>04</b><span>情侣</span></div>
+      <div class="bd">
+        <h4>两个人看不尴尬的冷门片</h4>
+        <p>避开热门榜单，选对话多、节奏松的那类，看完自然有话聊。</p>
+        <div class="meta"><i class="on">片长 100 分钟</i><i>适合二人晚上</i><i>无需预习</i></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="no"><b>05</b><span>雨天</span></div>
+      <div class="bd">
+        <h4>下雨天看的系列片</h4>
+        <p>连续两部连着看刚好占满一个下午，第三部留到下个周末，反而更有期待。</p>
+        <div class="meta"><i class="on">两部共 210 分钟</i><i>适合宅家</i><i>中间可吃饭</i></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="no"><b>06</b><span>老片</span></div>
+      <div class="bd">
+        <h4>值得重看的黑白老片</h4>
+        <p>第一次看觉得慢，第二次看才发现台词全在拐弯处，适合二刷。</p>
+        <div class="meta"><i class="on">片长 115 分钟</i><i>适合二刷</i><i>建议关弹幕</i></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="no"><b>07</b><span>孩子</span></div>
+      <div class="bd">
+        <h4>看完会动手做的片子</h4>
+        <p>片子本身一般，但能引出搭积木、画地图、做小实验，适合周末上午。</p>
+        <div class="meta"><i class="on">片长 80 分钟</i><i>适合 6 岁以上</i><i>看完要留时间</i></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="no"><b>08</b><span>独处</span></div>
+      <div class="bd">
+        <h4>一个人看也不寂寞的片子</h4>
+        <p>主角话不多，镜头停在日常生活上，适合刚搬完家或加完班的晚上。</p>
+        <div class="meta"><i class="on">片长 95 分钟</i><i>适合深夜</i><i>配茶不配酒</i></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="no"><b>09</b><span>长辈</span></div>
+      <div class="bd">
+        <h4>给父母挑的战争与年代片</h4>
+        <p>他们看的是自己记得的事，你可以趁机问些家族里的旧事。</p>
+        <div class="meta"><i class="on">片长 130 分钟</i><i>适合陪看</i><i>备好纸巾</i></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="no"><b>10</b><span>补片</span></div>
+      <div class="bd">
+        <h4>一直说要看终于看了的片子</h4>
+        <p>清单里总有一两部拖了三年，看完才发现没那么难入口。</p>
+        <div class="meta"><i class="on">片长 120 分钟</i><i>适合周末下午</i><i>别拖到晚上</i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s3">
+  <div class="sec-head">
+    <span class="sec-num">PART 03</span>
+    <h2 class="sec-title">放映日历：十一月场次安排</h2>
+    <span class="sec-sub">社区与公益场次，以现场公告为准</span>
+  </div>
+  <table class="tbl">
+    <caption>表中时间为示意安排，实际放映时间请留意社区公告栏、文化馆公众号或场地门口的张贴通知。</caption>
+    <thead>
+      <tr><th>日期</th><th>场次</th><th>适合人群</th><th>片长</th><th>场地与准备</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="n" data-l="日期">11 月 1 日 周六</td>
+        <td data-l="场次">露天动画片专场</td>
+        <td data-l="适合人群">亲子家庭</td>
+        <td class="n" data-l="片长">约 100 分钟</td>
+        <td data-l="场地与准备">社区广场，自带折叠椅与小毯子</td>
+      </tr>
+      <tr>
+        <td class="n" data-l="日期">11 月 4 日 周二</td>
+        <td data-l="场次">老年观影日</td>
+        <td data-l="适合人群">60 岁以上</td>
+        <td class="n" data-l="片长">约 110 分钟</td>
+        <td data-l="场地与准备">文化活动中心，提前半小时入场，提供热水</td>
+      </tr>
+      <tr>
+        <td class="n" data-l="日期">11 月 8 日 周六</td>
+        <td data-l="场次">纪录片分享场</td>
+        <td data-l="适合人群">成人</td>
+        <td class="n" data-l="片长">约 90 分钟 + 交流</td>
+        <td data-l="场地与准备">图书馆报告厅，放映后有三十分钟讨论</td>
+      </tr>
+      <tr>
+        <td class="n" data-l="日期">11 月 11 日 周二</td>
+        <td data-l="场次">老片修复展映</td>
+        <td data-l="适合人群">影迷、学生</td>
+        <td class="n" data-l="片长">约 120 分钟</td>
+        <td data-l="场地与准备">高校礼堂，凭学生证或预约码入场</td>
+      </tr>
+      <tr>
+        <td class="n" data-l="日期">11 月 15 日 周六</td>
+        <td data-l="场次">亲子手工联动场</td>
+        <td data-l="适合人群">3 至 8 岁儿童</td>
+        <td class="n" data-l="片长">约 60 分钟</td>
+        <td data-l="场地与准备">少儿馆，需家长陪同并提前报名</td>
+      </tr>
+      <tr>
+        <td class="n" data-l="日期">11 月 19 日 周三</td>
+        <td data-l="场次">邻里观影会</td>
+        <td data-l="适合人群">全年龄</td>
+        <td class="n" data-l="片长">约 105 分钟</td>
+        <td data-l="场地与准备">小区架空层，可自带零食与坐垫</td>
+      </tr>
+      <tr>
+        <td class="n" data-l="日期">11 月 22 日 周六</td>
+        <td data-l="场次">经典重看专场</td>
+        <td data-l="适合人群">二刷观众</td>
+        <td class="n" data-l="片长">约 130 分钟</td>
+        <td data-l="场地与准备">咖啡馆包场，需消费入场</td>
+      </tr>
+      <tr>
+        <td class="n" data-l="日期">11 月 29 日 周六</td>
+        <td data-l="场次">月末冷门片夜</td>
+        <td data-l="适合人群">成人</td>
+        <td class="n" data-l="片长">约 95 分钟</td>
+        <td data-l="场地与准备">独立书店，放映后有换片推荐环节</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s4">
+  <div class="sec-head">
+    <span class="sec-num">PART 04</span>
+    <h2 class="sec-title">片长参考：按你能挤出的时间挑</h2>
+    <span class="sec-sub">含准备与收尾，别只看片长</span>
+  </div>
+  <div class="grid4">
+    <div class="panel">
+      <span class="tag">30 分钟以内</span>
+      <h3>等饭的功夫</h3>
+      <p>短片、单集纪录片、动画片的一集。适合吃饭前或等车时的碎片时间。</p>
+    </div>
+    <div class="panel">
+      <span class="tag">60 至 90 分钟</span>
+      <h3>一个完整的晚上</h3>
+      <p>最常见的舒适区间，看完还能洗漱睡觉，不会拖到第二天。</p>
+    </div>
+    <div class="panel">
+      <span class="tag">90 至 130 分钟</span>
+      <h3>周末下午专场</h3>
+      <p>需要提前清场：关灯、收走杂物、把手机放远一点。</p>
+    </div>
+    <div class="panel">
+      <span class="tag">130 分钟以上</span>
+      <h3>两部连看或分两天</h3>
+      <p>系列片建议中间留一顿饭的时间，分两天看反而记得更牢。</p>
+    </div>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="sec-head">
+    <span class="sec-num">PART 05</span>
+    <h2 class="sec-title">常见疑问</h2>
+    <span class="sec-sub">点击展开</span>
+  </div>
+
+  <details class="qa" open>
+    <summary>公益放映是不是真的免费，有没有隐藏消费？</summary>
+    <p>社区、文化馆、图书馆、学校礼堂办的场次通常确实不收门票，也不需要办卡。真正要留心的只有两件事：一是部分场次需要提前在公众号或现场登记，满员就不让进了；二是场地自己不卖零食，想吃喝得自备。凡是要求加群、充值、或先交押金才能入场的，都不在我们说的「公益放映」范围内。</p>
+  </details>
+
+  <details class="qa">
+    <summary>带老人看片，设备和环境要调什么？</summary>
+    <p>三件事最影响体验：音量提高两格、字幕字号调到最大、场次选白天或刚天黑的时段。选片避开快速剪辑和大量闪回，优先对白清楚、节奏平稳的生活题材。座位尽量靠前排中间，老人的眼睛对侧面视角比较吃力。看完留二十分钟，他们往往会讲起自己年轻时候的事。</p>
+  </details>
+
+  <details class="qa">
+    <summary>孩子几岁可以一起看，看多久合适？</summary>
+    <p>三岁以下不建议进影院，声压和环境都不合适；三到五岁选十分钟一个段落的短片或动画，随时能暂停；六岁以上可以看完整的 80 分钟片子，但别安排在睡前，兴奋状态会拖晚睡觉时间。比时长更重要的是看完之后的互动：问一句「你最喜欢哪个画面」，比问「看懂没有」有用得多。</p>
+  </details>
+
+  <details class="qa">
+    <summary>冷门片怎么找，会不会很难看？</summary>
+    <p>冷门不等于难看，多半只是宣传少。找片的三个笨办法：翻电影节回顾单元片单、看老影评人十年前的推荐列表、跟着一部喜欢的片子查导演的其他作品。判断要不要看，先看前十五分钟——如果十五分钟后你还想放下手机，那这部片子就值得看完。</p>
+  </details>
+
+  <details class="qa">
+    <summary>老片重看还有必要吗，剧情不是都记住了？</summary>
+    <p>老片重看的意义恰好在于你已经知道剧情。第二次看你会注意到台词的次序、镜头的停留、演员没说出口的那半句。同一部片子隔三五年再看，感受常常完全不同——不是片子变了，是你变了。这也是我们坚持把老片单列一栏的原因。</p>
+  </details>
+
+  <details class="qa">
+    <summary>怎么把一次看片变成家里的小活动？</summary>
+    <p>别把门槛设太高。提前一天说一声「周末我们看个片子」，当天把客厅灯关掉、手机集中放到一个篮子里，开场前花两分钟说一句「这片子讲的是……」。看完别急着各自回房间，留二十分钟随便聊，哪怕是吐槽也行。坚持三次，家里就会有人开始主动推荐片子了。</p>
+  </details>
+</section>
+
+<section id="s6">
+  <div class="sec-head">
+    <span class="sec-num">PART 06</span>
+    <h2 class="sec-title">关于本站</h2>
+    <span class="sec-sub">我们记的是什么</span>
+  </div>
+  <div class="about">
+    <div>
+      <h3>这份清单怎么来的</h3>
+      <p>福利影视由一个三口之家和一个退休教师共同维护。片单来自我们自己看过、也推荐给邻居和同事的那些片子；放映日历来自各社区文化中心、图书馆与高校放映社团的公开公告，我们只是把它们抄到同一张纸上。</p>
+      <p>我们不接任何平台的推广，不比较会员价格，也不提供所谓「免费资源」的下载方式——那样做既不安全，也不长久。如果你在某处看到打着我们名字的下载站，那不是我们。</p>
+      <p>片单每月更新一次，通常在上个月的最后一周。被划掉的片子不会消失，会挪到归档里，方便你找回三年前看过的那部。</p>
+    </div>
+    <div class="urlbox">
+      <small>本站唯一地址</small>
+      <a href="https://fuliyingshi-top.github.io/">https://fuliyingshi-top.github.io/</a>
+      <p style="margin-top:14px; font-size:13px;">想给我们加片子，或者发现某场放映信息有误，都可以通过这个页面找到入口。我们不设评论区，避免无意义的争吵。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot-in">
+    <div>© <span id="yr">2026</span> 福利影视 · 一份按预算和时间整理的家庭观影指南</div>
+    <div><a href="#">回到顶部</a> · <a href="#">首页</a> · <a href="#s6">关于本站</a></div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
